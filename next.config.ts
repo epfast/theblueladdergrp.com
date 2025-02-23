@@ -1,19 +1,100 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {
-  /* config options here */
+import dotenv from 'dotenv';
+import nextComposePlugins from 'next-compose-plugins';
+import headers from '@/config/headers';
+import plugins from '@/config/plugins';
+
+dotenv.config();
+/**
+ * https://github.com/cyrilwanner/next-compose-plugins/issues/59
+ */
+const { withPlugins } = nextComposePlugins.extend(() => ({}));
+
+/**
+ * Next config
+ * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
+ */
+module.exports = withPlugins(plugins, {
+  /**
+   * add the environment variables you would like exposed to the client here
+   * documentation: https://nextjs.org/docs/api-reference/next.config.js/environment-variables
+   */
+  env: {
+    ENVIRONMENT_NAME: process.env.ENVIRONMENT_NAME,
+  },
+
+  /**
+   * The experimental option allows you to enable future/experimental options
+   * like React 18 concurrent features.
+   */
+  experimental: {
+    // urlImports: true,
+    // concurrentFeatures: true,
+    // serverComponents: true,
+  },
+
+  /**
+   * SWC minification opt-in
+   * Please note that while not in experimental, the swcMinification may cause issues in your build.
+   * example: https://github.com/vercel/next.js/issues/30429 (Yup email validation causes an exception)
+   */
+  // swcMinify: true,
+
+  poweredByHeader: false,
+  compress: true,
+
+  /**
+   * add the headers you would like your next server to use
+   * documentation: https://nextjs.org/docs/api-reference/next.config.js/headers
+   *                https://nextjs.org/docs/advanced-features/security-headers
+   */
+  headers,
+
+  /**
+   * https://nextjs.org/docs/basic-features/image-optimization
+   * Settings are the defaults
+   */
   images: {
-    dangerouslyAllowSVG: true,
-
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.eu.ctfassets.net',
+      },
+      {
+        protocol: 'https',
         hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
       },
     ],
   },
-};
+  webpack(config: NextConfig) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
 
-export default nextConfig;
+    return config;
+  },
+});
+
+// const nextConfig: NextConfig = {
+//   /* config options here */
+//   images: {
+//     dangerouslyAllowSVG: true,
+
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'placehold.co',
+//         port: '',
+//         pathname: '/**',
+//       },
+//     ],
+//   },
+// };
+
+// export default nextConfig;
