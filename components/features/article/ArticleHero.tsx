@@ -21,7 +21,7 @@ interface ArticleHeroProps {
 
 export const ArticleHero = ({
   article,
-  isFeatured,
+  // isFeatured,
   isReversedLayout = false,
 }: ArticleHeroProps) => {
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });

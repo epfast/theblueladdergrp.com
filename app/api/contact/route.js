@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server"
-import formData from "form-data"
-import Mailgun from "mailgun.js"
+import formData from 'form-data';
+import Mailgun from 'mailgun.js';
+import { NextResponse } from 'next/server';
 
-const mailgun = new Mailgun(formData)
+const mailgun = new Mailgun(formData);
 const mg = mailgun.client({
-  username: "api",
+  username: 'api',
   key: process.env.MAILGUN_API_KEY,
-})
+});
 
 function getEmailTemplate(data) {
   return `
@@ -80,55 +80,54 @@ function getEmailTemplate(data) {
         </table>
     </body>
     </html>
-  `
+  `;
 }
 
 export async function POST(req) {
   try {
     // Validate request
     if (!req.body) {
-      return NextResponse.json({ message: "Missing request body" }, { status: 400 })
+      return NextResponse.json({ message: 'Missing request body' }, { status: 400 });
     }
 
     // Parse the request body
-    const { name, email, phone, message } = await req.json()
+    const { name, email, phone, message } = await req.json();
 
     // Validate required fields
     if (!name || !email || !phone || !message) {
-      return NextResponse.json({ message: "Missing required fields" }, { status: 400 })
+      return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
     // Create email content
-    const htmlContent = getEmailTemplate({ name, email, phone, message })
+    const htmlContent = getEmailTemplate({ name, email, phone, message });
     const textContent = `
       Name: ${name}
       Email: ${email}
       Phone: ${phone}
       Message: ${message}
-    `
+    `;
 
     // Send email using Mailgun
     const msg = await mg.messages.create(process.env.MAILGUN_DOMAIN, {
-      from: "SJFast <mailgun@mail.sjfast.com>",
-      to: ["eric@sjfast.com"],
-      subject: "Website Lead from The Blue Ladder Group",
+      from: 'SJFast <mailgun@mail.sjfast.com>',
+      to: ['eric@sjfast.com'],
+      subject: 'Website Lead from The Blue Ladder Group',
       text: textContent,
       html: htmlContent,
-    })
+    });
 
     return NextResponse.json({
-      message: "Email sent successfully",
+      message: 'Email sent successfully',
       response: msg,
-    })
+    });
   } catch (error) {
-    console.error("Error sending email:", error)
+    console.error('Error sending email:', error);
     return NextResponse.json(
       {
-        message: "Error sending email",
-        error: error instanceof Error ? error.message : "Unknown error",
+        message: 'Error sending email',
+        error: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 },
-    )
+    );
   }
 }
-

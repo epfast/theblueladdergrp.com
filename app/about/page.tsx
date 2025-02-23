@@ -1,10 +1,11 @@
-import Link from 'next/link';
+import { CheckCircle } from 'lucide-react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import { PageHero } from '@/components/page-hero';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle } from 'lucide-react';
-import { PageHero } from '@/components/page-hero';
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About The Blue Ladder Group | CALGreen & EOS Experts',

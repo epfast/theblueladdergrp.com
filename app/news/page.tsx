@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
 import { ArticleHero, ArticleTileGrid } from '@/components/features/article';
 import { Container } from '@/components/shared/container';
 import { PageBlogPostOrder } from '@/lib/__generated/sdk';

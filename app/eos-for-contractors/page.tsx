@@ -1,15 +1,17 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle } from 'lucide-react'
-import { PageHero } from "@/components/page-hero"
-import type { Metadata } from 'next'
+import { CheckCircle } from 'lucide-react';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { PageHero } from '@/components/page-hero';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'EOS for Construction Businesses | Optimize & Grow',
-  description: 'Transform your construction business with EOS. Streamline processes, align your team, and achieve long-term success with expert implementation.',
-}
+  description:
+    'Transform your construction business with EOS. Streamline processes, align your team, and achieve long-term success with expert implementation.',
+};
 
 export default function EOSForContractors() {
   return (
@@ -20,33 +22,35 @@ export default function EOSForContractors() {
         image="/eos-hero.jpg"
         imageAlt="Construction site"
         ctaButton={{
-          text: "Schedule a Consultation",
-          href: "/contact"
+          text: 'Schedule a Consultation',
+          href: '/contact',
         }}
       />
 
       {/* What is EOS? */}
       <section className="container py-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid items-center gap-12 md:grid-cols-2">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold architectural-title">What is EOS?</h2>
+            <h2 className="architectural-title text-3xl font-bold">What is EOS?</h2>
             <p className="text-lg text-muted-foreground">
-              The Entrepreneurial Operating System (EOS) is a complete set of simple concepts and practical tools that has helped thousands of entrepreneurs get what they want from their businesses.
+              The Entrepreneurial Operating System (EOS) is a complete set of simple concepts and
+              practical tools that has helped thousands of entrepreneurs get what they want from
+              their businesses.
             </p>
             <ul className="space-y-2">
-              {
-                ["Align your team with a shared vision and clear goals",
-                  "Ensure the right people are in the right seats for success",
-                  "Use data-driven metrics to track progress and performance",
-                  "Solve issues permanently through a structured process",
-                  "Document and follow core processes consistently",
-                  "Gain traction with disciplined execution and accountability"
-                ].map((point, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>{point}</span>
-                  </li>
-                ))}
+              {[
+                'Align your team with a shared vision and clear goals',
+                'Ensure the right people are in the right seats for success',
+                'Use data-driven metrics to track progress and performance',
+                'Solve issues permanently through a structured process',
+                'Document and follow core processes consistently',
+                'Gain traction with disciplined execution and accountability',
+              ].map((point, index) => (
+                <li key={index} className="flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <span>{point}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="relative h-[400px]">
@@ -54,7 +58,7 @@ export default function EOSForContractors() {
               src="/what-is-eos.png"
               alt="EOS Components"
               fill
-              className="object-contain rounded-lg"
+              className="rounded-lg object-contain"
             />
           </div>
         </div>
@@ -64,25 +68,31 @@ export default function EOSForContractors() {
       <section className="bg-muted py-20" id="eos">
         <div className="container">
           <div className="space-y-12">
-            <h2 className="text-3xl font-bold tracking-tighter text-center">Streamline and Scale Your Construction Business</h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <h2 className="text-center text-3xl font-bold tracking-tighter">
+              Streamline and Scale Your Construction Business
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2">
               {[
                 {
-                  title: "Process Optimization",
-                  description: "We analyze your current workflows and streamline operations, reducing inefficiencies and freeing your team to focus on critical tasks."
+                  title: 'Process Optimization',
+                  description:
+                    'We analyze your current workflows and streamline operations, reducing inefficiencies and freeing your team to focus on critical tasks.',
                 },
                 {
-                  title: "Team Building and Alignment",
-                  description: "With EOS principles, we align your team to work toward shared goals, ensuring the right people are in the right roles."
+                  title: 'Team Building and Alignment',
+                  description:
+                    'With EOS principles, we align your team to work toward shared goals, ensuring the right people are in the right roles.',
                 },
                 {
-                  title: "Cultural Transformation",
-                  description: "Build a company culture of clarity, accountability, and excitement. Let your team thrive in an environment designed for success."
+                  title: 'Cultural Transformation',
+                  description:
+                    'Build a company culture of clarity, accountability, and excitement. Let your team thrive in an environment designed for success.',
                 },
                 {
-                  title: "Long-Term Strategy Implementation",
-                  description: "Partner with us to define a vision and implement scalable strategies for sustainable growth."
-                }
+                  title: 'Long-Term Strategy Implementation',
+                  description:
+                    'Partner with us to define a vision and implement scalable strategies for sustainable growth.',
+                },
               ].map((service, index) => (
                 <Card key={index}>
                   <CardHeader>
@@ -302,13 +312,14 @@ export default function EOSForContractors() {
       </section> */}
 
       {/* CTA */}
-      <section className="bg-primary text-primary-foreground py-20" id="contact">
-        <div className="container text-center space-y-8">
-          <h2 className="text-3xl font-bold architectural-title">
+      <section className="bg-primary py-20 text-primary-foreground" id="contact">
+        <div className="container space-y-8 text-center">
+          <h2 className="architectural-title text-3xl font-bold">
             Ready to Transform Your Construction Business?
           </h2>
-          <p className="text-xl max-w-[600px] mx-auto">
-            Let&apos;s discuss how EOS can help you achieve your goals and take your company to the next level.
+          <p className="mx-auto max-w-[600px] text-xl">
+            Let&apos;s discuss how EOS can help you achieve your goals and take your company to the
+            next level.
           </p>
           <Button size="lg" variant="secondary" asChild>
             <Link href="/contact">Schedule Your Free Consultation</Link>
@@ -316,6 +327,5 @@ export default function EOSForContractors() {
         </div>
       </section>
     </div>
-  )
+  );
 }
-

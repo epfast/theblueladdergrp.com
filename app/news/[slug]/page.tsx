@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
+
 import { ArticleContent, ArticleHero, ArticleTileGrid } from '@/components/features/article';
 import { Container } from '@/components/shared/container';
 import { client, previewClient } from '@/lib/client';
 
-interface BlogPageProps {
-  params: { slug: string };
-}
+// interface BlogPageProps {
+//   params: { slug: string };
+// }
 
-export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const { slug } = params;
   const { isEnabled: preview } = await draftMode();
   const gqlClient = preview ? previewClient : client;
 
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
   return metadata;
 }
 
-export async function generateStaticParams(): Promise<BlogPageProps['params'][]> {
+export async function generateStaticParams(): Promise<any['params'][]> {
   const gqlClient = client;
   const { pageBlogPostCollection } = await gqlClient.pageBlogPostCollection({ limit: 100 });
 
@@ -52,8 +53,8 @@ export async function generateStaticParams(): Promise<BlogPageProps['params'][]>
     });
 }
 
-export default async function Page({ params }: BlogPageProps) {
-  const { slug } = await params;
+export default async function Page({ params }: any) {
+  const { slug } = params;
   const { isEnabled: preview } = await draftMode();
   const gqlClient = preview ? previewClient : client;
   const { pageBlogPostCollection } = await gqlClient.pageBlogPost({ slug, preview });
