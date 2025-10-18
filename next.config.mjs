@@ -1,6 +1,5 @@
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import dotenv from 'dotenv';
-import type { NextConfig } from 'next';
 import nextComposePlugins from 'next-compose-plugins';
 
 dotenv.config();
@@ -13,7 +12,7 @@ const { withPlugins } = nextComposePlugins.extend(() => ({}));
  * Next config
  * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
  */
-module.exports = withPlugins(
+const nextConfig = withPlugins(
   [
     withBundleAnalyzer,
     {
@@ -114,16 +113,18 @@ module.exports = withPlugins(
         },
       ],
     },
-    webpack(config: NextConfig) {
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-      });
+    // webpack(config: NextConfig) {
+    //   config.module.rules.push({
+    //     test: /\.svg$/,
+    //     use: ['@svgr/webpack'],
+    //   });
 
-      return config;
-    },
+    //   return config;
+    // },
   },
 );
+
+export default nextConfig;
 
 // const nextConfig: NextConfig = {
 //   /* config options here */
