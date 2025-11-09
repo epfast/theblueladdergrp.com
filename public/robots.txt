@@ -1,0 +1,7 @@
+# robots.txt for theblueladdergrp.com
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.theblueladdergrp.com/sitemap.xml
+
